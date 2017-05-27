@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="createUserAction"
+                class="org.gitshu.user.action.UserAction" method="createUser">
+            <result name="success">index.jsp</result>
+        </action>
+
+        <action name="listUserAction"
+                class="org.gitshu.user.action.UserAction" method="listUser">
+            <result name="success">index.jsp</result>
+        </action>
+
+        <action name="index.jsp"
+                class="org.gitshu.user.action.UserAction" method="listUser">
+            <result name="success">index.jsp</result>
+        </action>
+
+    </package>
+</struts>

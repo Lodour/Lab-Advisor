@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Lab-Advisor:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab_Advisor_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Lab-Advisor/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab-Advisor" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Hibernate 5.2.9-5.2.9" />
+          <element id="library" level="project" name="Spring-4.3.8.RELEASE" />
+          <element id="library" level="project" name="Struts 2-2.3.20.1" />
+          <element id="library" level="project" name="org.apache.struts:struts2-spring-plugin:2.3.20.1" />
+          <element id="library" level="project" name="org.springframework:spring-web:4.3.8.RELEASE" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:5.1.8" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
