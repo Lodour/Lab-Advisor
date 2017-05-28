@@ -15,14 +15,14 @@ public interface UserService {
     /**
      * 创建用户
      *
-     * @param userEntity 用户实体
+     * @param userEntity 待创建的用户
      */
-    void createUser(UserEntity userEntity);
+    void create(UserEntity userEntity);
 
     /**
-     * 获取用户列表
+     * 获取所有用户
      *
      * @return 用户列表
      */
-    List<UserEntity> listUser();
+    List<UserEntity> getAllUsers();
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -26,23 +27,29 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
 
     @Autowired
-    public UserServiceImpl(@Qualifier("rawUserDAO") UserDAO userDAO) {
+    public UserServiceImpl(@Qualifier("userDAOImpl") UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
+
     /**
-     * @param userEntity 用户实体
+     * 创建用户
+     *
+     * @param userEntity 待创建的用户
      */
     @Override
-    public void createUser(UserEntity userEntity) {
-        userDAO.createUser(userEntity);
+    public void create(UserEntity userEntity) {
+        userEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        userDAO.create(userEntity);
     }
 
     /**
+     * 获取所有用户
+     *
      * @return 用户列表
      */
     @Override
-    public List<UserEntity> listUser() {
-        return userDAO.listUser();
+    public List<UserEntity> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 }

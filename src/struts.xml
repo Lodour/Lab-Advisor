@@ -13,12 +13,12 @@
         </action>
 
         <action name="listUserAction"
-                class="org.gitshu.user.action.UserAction" method="listUser">
+                class="org.gitshu.user.action.UserAction" method="getAllUsers">
             <result name="success">index.jsp</result>
         </action>
 
         <action name="index.jsp"
-                class="org.gitshu.user.action.UserAction" method="listUser">
+                class="org.gitshu.user.action.UserAction" method="getAllUsers">
             <result name="success">index.jsp</result>
         </action>
 

@@ -6,7 +6,6 @@ import org.gitshu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,17 +32,16 @@ public class UserAction implements ModelDriven<UserEntity> {
     // 添加用户
     public String createUser() throws Exception {
         // 保存
-        userEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        userService.createUser(userEntity);
+        userService.create(userEntity);
         // 刷新列表
         userEntityList = null;
-        userEntityList = userService.listUser();
+        userEntityList = userService.getAllUsers();
         return SUCCESS;
     }
 
     // 列举用户
-    public String listUser() throws Exception {
-        userEntityList = userService.listUser();
+    public String getAllUsers() throws Exception {
+        userEntityList = userService.getAllUsers();
         return SUCCESS;
     }
 

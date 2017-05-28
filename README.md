@@ -1,2 +1,2 @@
 # Lab-Advisor
-Laboratory Advisor for Colleges and Universities.
+Laboratory Manager for Colleges and Universities.
