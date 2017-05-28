@@ -13,33 +13,12 @@
 </head>
 <body>
 
-<h2>Add User</h2>
-<s:form action="createUserAction" method="POST" namespace="/">
-    <s:textfield name="model.username" label="用户名"/>
-    <s:password name="model.password" label="密码"/>
-    <s:textfield name="model.realName" label="真实姓名"/>
-    <s:submit value="注册"/>
-</s:form>
+<p>当前用户: ${sessionScope.get("username")}</p>
 
-<h2>All Users</h2>
-<s:if test="userEntityList.size() > 0">
-    <table border="1px" cellpadding="8px">
-        <tr>
-            <td>ID</td>
-            <td>username</td>
-            <td>realName</td>
-            <td>password</td>
-        </tr>
-        <s:iterator value="userEntityList" status="userStatus">
-            <tr>
-                <td><s:property value="id"/></td>
-                <td><s:property value="username"/></td>
-                <td><s:property value="password"/></td>
-                <td><s:property value="realName"/></td>
-            </tr>
-        </s:iterator>
-    </table>
-</s:if>
+<ul>
+    <li><a href="login.jsp">登陆</a></li>
+    <li><a href="register.jsp">注册</a></li>
+    <li><a href="logoutAction.action">注销</a></li>
+</ul>
 
-</body>
 </html>

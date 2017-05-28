@@ -12,34 +12,49 @@ import java.util.List;
  * 封装用户数据的访问接口
  */
 public interface UserDAO {
-    /**
-     * 创建用户
-     *
-     * @param userEntity 用户实体
-     */
-    void create(UserEntity userEntity);
 
     /**
-     * 删除指定ID的用户
+     * 创建新用户
      *
-     * @param id 待删除用户的ID
+     * @param username 用户名
+     * @param password 密码
+     * @param userType 用户类型
+     * @param realName 真实姓名
+     * @param gender   性别
      */
-    void delete(int id);
+    void create(String username, String password, int userType, String realName, int gender);
 
     /**
-     * 更新用户
+     * 更新用户登录时间
      *
-     * @param userEntity 待更新的用户
+     * @param id 登录用户
      */
-    void update(UserEntity userEntity);
+    void updateLoginTime(int id);
 
     /**
-     * 根据ID获取用户
+     * 检测用户名和密码是否匹配
      *
-     * @param id 用户ID
-     * @return 用户实体
+     * @param username 用户名
+     * @param password 密码
+     * @return 匹配结果
      */
-    UserEntity getById(int id);
+    boolean checkUsernameAndPassword(String username, String password);
+
+    /**
+     * 根据用户名获取用户ID
+     *
+     * @param username 用户名
+     * @return 用户ID
+     */
+    int getIdByUsername(String username);
+
+
+    /**
+     * 获取所有用户实体
+     *
+     * @return 所有的用户实体
+     */
+    List<UserEntity> getAllUserEntities();
 
     /**
      * 根据用户名获取用户
@@ -50,19 +65,9 @@ public interface UserDAO {
     UserEntity getByUsername(String username);
 
     /**
-     * 根据用户名和密码获取用户
-     *
+     * 检测用户是否存在
      * @param username 用户名
-     * @param password 密码
-     * @return 用户实体
+     * @return 是否存在
      */
-    UserEntity getByUsernameAndPassword(String username, String password);
-
-
-    /**
-     * 获取用户列表
-     *
-     * @return 用户列表
-     */
-    List<UserEntity> getAllUsers();
+    boolean chkUsername(String username);
 }

@@ -1,5 +1,7 @@
 package user;
 
+import org.gitshu.constant.UserType;
+import org.gitshu.user.constant.Gender;
 import org.gitshu.user.dao.UserDAO;
 import org.gitshu.user.entity.UserEntity;
 import org.junit.Test;
@@ -9,8 +11,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.persistence.NoResultException;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -24,62 +24,28 @@ public class UserDAOTest {
     private UserDAO userDAO;
 
     @Test
-    public void saveTest() {
+    public void createTest() {
+        String username = "aaaaaaaa";
         try {
-            UserEntity user = new UserEntity();
-            user.setUsername("lyq2");
-            user.setRealName("刘玉琦");
-            user.setPassword("lll");
-            user.setCreateTime(new Timestamp(System.currentTimeMillis()));
-            user.setGender(0);
-            userDAO.create(user);
+            userDAO.create(username, "pass", UserType.ADMIN, "real", Gender.MAN);
         } catch (DataIntegrityViolationException e) {
-            System.out.println("已存在");
+            System.out.println("已经存在该用户");
         }
+        UserEntity u = userDAO.getByUsername(username);
+        System.out.println(u.getPassword());
     }
 
     @Test
-    public void deleteTest() {
-        int id = 3;
-        userDAO.delete(id);
+    public void checkUsernameAndPasswordTest() {
+        System.out.println(userDAO.checkUsernameAndPassword("lyq", "lll"));
+        System.out.println(userDAO.checkUsernameAndPassword("+++", "+++"));
     }
 
     @Test
-    public void getByIdTest() {
-        UserEntity u = userDAO.getById(1);
-        System.out.println(u.getUsername());
-    }
-
-    @Test
-    public void getByUsernameTest() {
-        UserEntity u = userDAO.getByUsername("lyq");
-        System.out.println(u.getUsername());
-    }
-
-    @Test
-    public void getByUsernameAndPasswordTest() {
-        try {
-            UserEntity v = userDAO.getByUsernameAndPassword("lyq", "lyq");
-            System.out.println(v.getCreateTime());
-        } catch (NoResultException e) {
-            System.out.println("不存在的");
-        }
-    }
-
-    @Test
-    public void updateTest() {
-        UserEntity u = userDAO.getByUsername("lyq");
-        u.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        userDAO.update(u);
-
-        System.out.println(userDAO.getByUsername("lyq").getCreateTime());
-    }
-
-    @Test
-    public void listTest() {
-        List<UserEntity> list = userDAO.getAllUsers();
-        for (UserEntity u : list) {
-            System.out.println(u.getId() + ": " + u.getUsername());
+    public void getAllUserEntitiesTest() {
+        List<UserEntity> userEntityArrayList = userDAO.getAllUserEntities();
+        for (UserEntity userEntity : userEntityArrayList) {
+            System.out.println(userEntity.getId() + " " + userEntity.getUsername());
         }
     }
 }

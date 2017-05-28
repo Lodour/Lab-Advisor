@@ -3,13 +3,12 @@ package org.gitshu.user.action;
 import com.opensymphony.xwork2.ModelDriven;
 import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
+import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
  * Created by Lodour on 17/5/27 01:54.
@@ -17,31 +16,23 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
  * 用户相关动作
  */
 @Controller
-public class UserAction implements ModelDriven<UserEntity> {
+public class UserListAction extends ActionVariableSupport implements ModelDriven<UserEntity> {
     // 使用UserService进行事务请求
     private final UserService userService;
+
     // Action所使用的数据实体
     private UserEntity userEntity = new UserEntity();
     private List<UserEntity> userEntityList = new ArrayList<>();
 
     @Autowired
-    public UserAction(UserService userService) {
+    public UserListAction(UserService userService) {
         this.userService = userService;
     }
 
-    // 添加用户
-    public String createUser() throws Exception {
-        // 保存
-        userService.create(userEntity);
-        // 刷新列表
-        userEntityList = null;
-        userEntityList = userService.getAllUsers();
-        return SUCCESS;
-    }
-
     // 列举用户
-    public String getAllUsers() throws Exception {
-        userEntityList = userService.getAllUsers();
+    public String execute() throws Exception {
+        userEntityList = userService.getAllUserEntities();
+        System.out.println(userEntityList + "  " + userEntityList.size());
         return SUCCESS;
     }
 

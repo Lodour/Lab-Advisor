@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -34,47 +36,81 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * 创建用户
+     * 创建新用户
      *
-     * @param userEntity 用户实体
+     * @param username 用户名
+     * @param password 密码
+     * @param userType 用户类型
+     * @param realName 真实姓名
+     * @param gender   性别
      */
     @Override
-    public void create(UserEntity userEntity) {
+    public void create(String username, String password, int userType, String realName, int gender) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(username);
+        userEntity.setPassword(password);
+        userEntity.setUserType(userType);
+        userEntity.setRealName(realName);
+        userEntity.setGender(gender);
+        userEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
         getSession().save(userEntity);
     }
 
     /**
-     * 删除指定ID的用户
+     * 更新用户登录时间
      *
-     * @param id 待删除用户的ID
+     * @param id 登录用户
      */
     @Override
-    public void delete(int id) {
-        getSession().createQuery("delete from UserEntity where id = :id").setParameter("id", id).executeUpdate();
-    }
-
-    /**
-     * 更新用户
-     *
-     * @param userEntity 待更新的用户
-     */
-    @Override
-    public void update(UserEntity userEntity) {
-        getSession().update(userEntity);
-    }
-
-    /**
-     * 根据ID获取用户
-     *
-     * @param id 用户ID
-     * @return 用户实体
-     */
-    @Override
-    public UserEntity getById(int id) {
-        return (UserEntity) getSession()
-                .createQuery("from UserEntity where id = :id")
+    public void updateLoginTime(int id) {
+        getSession()
+                .createQuery("update UserEntity u set u.lastLogin = current_timestamp  where u.id = :id")
                 .setParameter("id", id)
-                .getSingleResult();
+                .executeUpdate();
+    }
+
+    /**
+     * 检测用户名和密码是否匹配
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return 匹配结果
+     */
+    @Override
+    public boolean checkUsernameAndPassword(String username, String password) {
+        try {
+            getSession()
+                    .createQuery("from UserEntity u where u.username = :username and u.password = :password")
+                    .setParameter("username", username)
+                    .setParameter("password", password)
+                    .getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
+    /**
+     * 根据用户名获取用户ID
+     *
+     * @param username 用户名
+     * @return 用户ID
+     */
+    @Override
+    public int getIdByUsername(String username) {
+        return getByUsername(username).getId();
+    }
+
+    /**
+     * 获取所有用户实体
+     *
+     * @return 所有的用户实体
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<UserEntity> getAllUserEntities() {
+        return (List<UserEntity>) getSession()
+                .createQuery("from UserEntity").getResultList();
     }
 
     /**
@@ -92,28 +128,19 @@ public class UserDAOImpl implements UserDAO {
     }
 
     /**
-     * 根据用户名和密码获取用户
+     * 检测用户是否存在
      *
      * @param username 用户名
-     * @param password 密码
-     * @return 用户实体
+     * @return 是否存在
      */
     @Override
-    public UserEntity getByUsernameAndPassword(String username, String password) {
-        return (UserEntity) getSession()
-                .createQuery("from UserEntity u where u.username = :username and u.password = :password")
-                .setParameter("username", username)
-                .setParameter("password", password)
-                .getSingleResult();
+    public boolean chkUsername(String username) {
+        try {
+            getByUsername(username);
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
     }
 
-    /**
-     * 获取用户列表
-     *
-     * @return 用户列表
-     */
-    @Override
-    public List<UserEntity> getAllUsers() {
-        return (List<UserEntity>) getSession().createQuery("from UserEntity ").list();
-    }
 }

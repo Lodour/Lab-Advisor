@@ -4,10 +4,8 @@ import org.gitshu.user.dao.UserDAO;
 import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -27,29 +25,58 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
 
     @Autowired
-    public UserServiceImpl(@Qualifier("userDAOImpl") UserDAO userDAO) {
+    public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
 
     /**
-     * 创建用户
+     * 创建新用户
      *
-     * @param userEntity 待创建的用户
+     * @param username 用户名
+     * @param password 密码
+     * @param userType 用户类型
+     * @param realName 真实姓名
+     * @param gender   性别
      */
     @Override
-    public void create(UserEntity userEntity) {
-        userEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        userDAO.create(userEntity);
+    public void create(String username, String password, int userType, String realName, int gender) {
+        userDAO.create(username, password, userType, realName, gender);
     }
 
     /**
-     * 获取所有用户
+     * 登录用户
      *
-     * @return 用户列表
+     * @param username 用户名
+     * @param password 密码
+     * @return 若登录成功则返回用户ID，否则返回-1
      */
     @Override
-    public List<UserEntity> getAllUsers() {
-        return userDAO.getAllUsers();
+    public int login(String username, String password) {
+        if (!userDAO.checkUsernameAndPassword(username, password)) return -1;
+        int id = userDAO.getIdByUsername(username);
+        userDAO.updateLoginTime(id);
+        return id;
+    }
+
+    /**
+     * 检测用户名是否已存在
+     *
+     * @param username 用户名
+     * @return 是否存在
+     */
+    @Override
+    public boolean chkUsername(String username) {
+        return userDAO.chkUsername(username);
+    }
+
+    /**
+     * 获取所有用户数据
+     *
+     * @return 所有的用户实体
+     */
+    @Override
+    public List<UserEntity> getAllUserEntities() {
+        return userDAO.getAllUserEntities();
     }
 }
