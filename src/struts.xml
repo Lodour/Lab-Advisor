@@ -7,27 +7,18 @@
 <struts>
     <package name="default" namespace="/" extends="struts-default">
 
-        <interceptors>
-            <interceptor name="userRegisterInterceptor"
-                         class="org.gitshu.user.action.interceptor.UserRegisterInterceptor"/>
-        </interceptors>
-
-        <action name="list.jsp" class="org.gitshu.user.action.UserListAction">
+        <action name="listUserAction" class="org.gitshu.user.action.UserListAction">
             <result name="success">list.jsp</result>
         </action>
 
         <action name="registerAction" class="org.gitshu.user.action.UserRegisterAction">
             <result name="success">index.jsp</result>
             <result name="error">register.jsp</result>
-            <result name="input">register.jsp</result>
-            <interceptor-ref name="defaultStack"/>
-            <interceptor-ref name="userRegisterInterceptor"/>
         </action>
 
         <action name="loginAction" class="org.gitshu.user.action.UserLoginAction">
             <result name="success">index.jsp</result>
             <result name="error">login.jsp</result>
-            <result name="input">login.jsp</result>
         </action>
 
         <action name="logoutAction" class="org.gitshu.user.action.UserLogoutAction">

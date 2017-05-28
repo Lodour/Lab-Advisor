@@ -38,20 +38,14 @@ public class UserDAOImpl implements UserDAO {
     /**
      * 创建新用户
      *
-     * @param username 用户名
-     * @param password 密码
-     * @param userType 用户类型
-     * @param realName 真实姓名
-     * @param gender   性别
+     * @param userEntity 用户实体
      */
+
     @Override
-    public void create(String username, String password, int userType, String realName, int gender) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUsername(username);
-        userEntity.setPassword(password);
-        userEntity.setUserType(userType);
-        userEntity.setRealName(realName);
-        userEntity.setGender(gender);
+    public void create(UserEntity userEntity) {
+        assert !"".equals(userEntity.getUsername());
+        assert !"".equals(userEntity.getPassword());
+        assert !"".equals(userEntity.getRealName());
         userEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
         getSession().save(userEntity);
     }
@@ -143,4 +137,13 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * 更新用户
+     *
+     * @param userEntity 用户实体
+     */
+    @Override
+    public void update(UserEntity userEntity) {
+        getSession().update(userEntity);
+    }
 }

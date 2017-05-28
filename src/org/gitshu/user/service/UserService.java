@@ -16,13 +16,24 @@ public interface UserService {
     /**
      * 创建用户
      *
-     * @param username 用户名
-     * @param password 密码
-     * @param userType 用户类型
-     * @param realName 真实姓名
-     * @param gender   性别
+     * @param userEntity 用户实体
      */
-    void create(String username, String password, int userType, String realName, int gender);
+    void create(UserEntity userEntity);
+
+
+    /**
+     * 创建访客账户
+     *
+     * @param userEntity 用户实体
+     */
+    void createGuest(UserEntity userEntity);
+
+    /**
+     * 更新用户
+     *
+     * @param userEntity 用户实体
+     */
+    void update(UserEntity userEntity);
 
     /**
      * 登录用户

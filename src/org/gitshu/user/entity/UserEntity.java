@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Lodour on 17/5/27 01:04.
- * 自动生成的User实体
+ * Created by Lodour on 17/5/28 22:51.
+ * 用户实体
  */
 @Entity
-@Table(name = "user", schema = "test")
+@Table(name = "user", schema = "test", catalog = "")
 public class UserEntity {
     private int id;
     private String username;
@@ -19,6 +19,8 @@ public class UserEntity {
     private Timestamp createTime;
     private Timestamp lastLogin;
     private String info;
+    private String mobile;
+    private String email;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -61,7 +63,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "realName", nullable = true, length = 50)
+    @Column(name = "realName", nullable = false, length = 50)
     public String getRealName() {
         return realName;
     }
@@ -110,6 +112,26 @@ public class UserEntity {
         this.info = info;
     }
 
+    @Basic
+    @Column(name = "mobile", nullable = true, length = 50)
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Basic
+    @Column(name = "email", nullable = true, length = 50)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -125,7 +147,9 @@ public class UserEntity {
         if (realName != null ? !realName.equals(that.realName) : that.realName != null) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
         if (lastLogin != null ? !lastLogin.equals(that.lastLogin) : that.lastLogin != null) return false;
-        return info != null ? info.equals(that.info) : that.info == null;
+        if (info != null ? !info.equals(that.info) : that.info != null) return false;
+        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
+        return email != null ? email.equals(that.email) : that.email == null;
     }
 
     @Override
@@ -139,6 +163,8 @@ public class UserEntity {
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
         result = 31 * result + (info != null ? info.hashCode() : 0);
+        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 }

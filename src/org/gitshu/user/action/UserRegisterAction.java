@@ -1,7 +1,6 @@
 package org.gitshu.user.action;
 
 import com.opensymphony.xwork2.ModelDriven;
-import org.gitshu.constant.UserType;
 import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
 import org.gitshu.utils.action.ActionVariableSupport;
@@ -30,7 +29,7 @@ public class UserRegisterAction extends ActionVariableSupport implements ModelDr
     // 注册
     public String execute() throws Exception {
         try {
-            userService.create(userEntity.getUsername(), userEntity.getPassword(), UserType.GUEST, userEntity.getRealName(), userEntity.getGender());
+            userService.createGuest(userEntity);
         } catch (Exception e) {
             e.printStackTrace();
             return ERROR;

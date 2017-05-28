@@ -3,12 +3,13 @@ package org.gitshu.user.action;
 import com.opensymphony.xwork2.ModelDriven;
 import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
-import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.opensymphony.xwork2.Action.SUCCESS;
 
 /**
  * Created by Lodour on 17/5/27 01:54.
@@ -16,7 +17,7 @@ import java.util.List;
  * 用户相关动作
  */
 @Controller
-public class UserListAction extends ActionVariableSupport implements ModelDriven<UserEntity> {
+public class UserListAction implements ModelDriven<UserEntity> {
     // 使用UserService进行事务请求
     private final UserService userService;
 

@@ -16,13 +16,9 @@ public interface UserDAO {
     /**
      * 创建新用户
      *
-     * @param username 用户名
-     * @param password 密码
-     * @param userType 用户类型
-     * @param realName 真实姓名
-     * @param gender   性别
+     * @param userEntity 用户实体
      */
-    void create(String username, String password, int userType, String realName, int gender);
+    void create(UserEntity userEntity);
 
     /**
      * 更新用户登录时间
@@ -70,4 +66,11 @@ public interface UserDAO {
      * @return 是否存在
      */
     boolean chkUsername(String username);
+
+    /**
+     * 更新用户
+     *
+     * @param userEntity 用户实体
+     */
+    void update(UserEntity userEntity);
 }

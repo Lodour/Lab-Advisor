@@ -15,6 +15,8 @@ import javax.servlet.ServletContext;
  * Created by Lodour on 17/5/28 20:09.
  * 用户注册拦截器
  */
+// 暂时不使用拦截器
+@Deprecated
 public class UserRegisterInterceptor extends AbstractInterceptor {
 
     @Override

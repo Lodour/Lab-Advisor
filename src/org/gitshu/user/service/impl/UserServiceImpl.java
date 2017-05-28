@@ -1,5 +1,6 @@
 package org.gitshu.user.service.impl;
 
+import org.gitshu.constant.UserType;
 import org.gitshu.user.dao.UserDAO;
 import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
@@ -29,19 +30,30 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
-
     /**
-     * 创建新用户
+     * 创建用户
      *
-     * @param username 用户名
-     * @param password 密码
-     * @param userType 用户类型
-     * @param realName 真实姓名
-     * @param gender   性别
+     * @param userEntity 用户实体
      */
     @Override
-    public void create(String username, String password, int userType, String realName, int gender) {
-        userDAO.create(username, password, userType, realName, gender);
+    public void create(UserEntity userEntity) {
+        userDAO.create(userEntity);
+    }
+
+    /**
+     * 创建访客账户
+     *
+     * @param userEntity 用户实体
+     */
+    @Override
+    public void createGuest(UserEntity userEntity) {
+        userEntity.setUserType(UserType.GUEST);
+        userDAO.create(userEntity);
+    }
+
+    @Override
+    public void update(UserEntity userEntity) {
+        userDAO.update(userEntity);
     }
 
     /**

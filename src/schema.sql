@@ -9,6 +9,8 @@ CREATE TABLE user (
   userType   INT                      DEFAULT 3,
   realName   CHAR(50)        NOT NULL,
   gender     INT             NOT NULL DEFAULT 2,
+  mobile     CHAR(50),
+  email      CHAR(50),
   createTime DATETIME        NOT NULL DEFAULT current_timestamp,
   lastLogin  DATETIME,
   info       TEXT
