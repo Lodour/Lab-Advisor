@@ -20,4 +20,9 @@
     <li><a href="register.jsp">注册</a></li>
     <li><a href="logoutAction.action">注销</a></li>
 </ul>
+<s:action name="listUserAction" executeResult="false" namespace="/"/>
+
+${tt[0].getUsername()}
+${tt[0].getCreateTime()}
+
 </html>

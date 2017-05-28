@@ -1,13 +1,10 @@
 package user;
 
-import org.gitshu.constant.UserType;
-import org.gitshu.user.constant.Gender;
 import org.gitshu.user.dao.UserDAO;
 import org.gitshu.user.entity.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,18 +19,6 @@ import java.util.List;
 public class UserDAOTest {
     @Autowired
     private UserDAO userDAO;
-
-    @Test
-    public void createTest() {
-        String username = "aaaaaaaa";
-        try {
-            userDAO.create(username, "pass", UserType.ADMIN, "real", Gender.MAN);
-        } catch (DataIntegrityViolationException e) {
-            System.out.println("已经存在该用户");
-        }
-        UserEntity u = userDAO.getByUsername(username);
-        System.out.println(u.getPassword());
-    }
 
     @Test
     public void checkUsernameAndPasswordTest() {

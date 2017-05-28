@@ -25,5 +25,9 @@
             <result name="success">index.jsp</result>
         </action>
 
+        <action name="CheckUsername" class="org.gitshu.user.action.CheckUsername">
+            <result name="done">check.jsp</result>
+        </action>
+
     </package>
 </struts>
