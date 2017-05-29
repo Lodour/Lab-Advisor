@@ -1,6 +1,6 @@
 package org.gitshu.user.service;
 
-import org.gitshu.user.entity.UserEntity;
+import org.gitshu.entity.UserEntity;
 
 import java.util.List;
 

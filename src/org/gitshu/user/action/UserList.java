@@ -1,6 +1,6 @@
 package org.gitshu.user.action;
 
-import org.gitshu.user.entity.UserEntity;
+import org.gitshu.entity.UserEntity;
 import org.gitshu.user.service.UserService;
 import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,8 @@ import java.util.List;
  * 用户相关动作
  */
 @Controller
-public class UserListAction extends ActionVariableSupport {
+@Deprecated
+public class UserList extends ActionVariableSupport {
     // 使用UserService进行事务请求
     private final UserService userService;
 
@@ -23,7 +24,7 @@ public class UserListAction extends ActionVariableSupport {
     private List<UserEntity> userEntityList = new ArrayList<>();
 
     @Autowired
-    public UserListAction(UserService userService) {
+    public UserList(UserService userService) {
         this.userService = userService;
     }
 

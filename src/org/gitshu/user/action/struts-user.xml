@@ -7,26 +7,27 @@
 <struts>
     <package name="user" namespace="/user" extends="default">
 
-        <action name="CheckUsername" class="org.gitshu.user.action.CheckUsernameAction">
-            <result name="done">check.jsp</result>
+        <action name="checkUsername" class="org.gitshu.user.action.CheckUsername">
+            <result name="done">checkUsername.jsp</result>
         </action>
 
-        <action name="listUserAction" class="org.gitshu.user.action.UserListAction">
-            <result name="success">list.jsp</result>
-        </action>
-
-        <action name="registerAction" class="org.gitshu.user.action.UserRegisterAction">
-            <result name="success">/index.jsp</result>
+        <action name="register" class="org.gitshu.user.action.UserRegister">
+            <result name="success">login.jsp</result>
             <result name="error">register.jsp</result>
         </action>
 
-        <action name="loginAction" class="org.gitshu.user.action.UserLoginAction">
-            <result name="success">/index.jsp</result>
+        <action name="login" class="org.gitshu.user.action.UserLogin">
+            <result name="success">profiles.jsp</result>
             <result name="error">login.jsp</result>
         </action>
 
-        <action name="logoutAction" class="org.gitshu.user.action.UserLogoutAction">
+        <action name="logout" class="org.gitshu.user.action.UserLogout">
             <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="updateProfile" class="org.gitshu.user.action.ProfileUpdate">
+            <result name="success">profiles-edit.jsp</result>
+            <result name="error">login.jsp</result>
         </action>
 
     </package>

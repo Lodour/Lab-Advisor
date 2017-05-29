@@ -1,11 +1,11 @@
-package org.gitshu.user.entity;
+package org.gitshu.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 /**
- * Created by Lodour on 17/5/28 22:51.
- * 用户实体
+ * Created by Lodour on 17/5/29 16:20.
  */
 @Entity
 @Table(name = "user", schema = "test", catalog = "")
@@ -16,11 +16,15 @@ public class UserEntity {
     private Integer userType;
     private String realName;
     private int gender;
+    private String mobile;
+    private String email;
     private Timestamp createTime;
     private Timestamp lastLogin;
     private String info;
-    private String mobile;
-    private String email;
+    private Collection<MailEntity> mailById;
+    private Collection<MailEntity> mailById_0;
+    private Collection<ProjectEntity> projectsById;
+    private Collection<ProjectUserEntity> projectUsersById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -83,6 +87,26 @@ public class UserEntity {
     }
 
     @Basic
+    @Column(name = "mobile", nullable = true, length = 50)
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Basic
+    @Column(name = "email", nullable = true, length = 50)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Basic
     @Column(name = "createTime", nullable = false)
     public Timestamp getCreateTime() {
         return createTime;
@@ -112,26 +136,6 @@ public class UserEntity {
         this.info = info;
     }
 
-    @Basic
-    @Column(name = "mobile", nullable = true, length = 50)
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    @Basic
-    @Column(name = "email", nullable = true, length = 50)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,11 +149,11 @@ public class UserEntity {
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (userType != null ? !userType.equals(that.userType) : that.userType != null) return false;
         if (realName != null ? !realName.equals(that.realName) : that.realName != null) return false;
+        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
         if (lastLogin != null ? !lastLogin.equals(that.lastLogin) : that.lastLogin != null) return false;
-        if (info != null ? !info.equals(that.info) : that.info != null) return false;
-        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
-        return email != null ? email.equals(that.email) : that.email == null;
+        return info != null ? info.equals(that.info) : that.info == null;
     }
 
     @Override
@@ -160,11 +164,47 @@ public class UserEntity {
         result = 31 * result + (userType != null ? userType.hashCode() : 0);
         result = 31 * result + (realName != null ? realName.hashCode() : 0);
         result = 31 * result + gender;
+        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
         result = 31 * result + (info != null ? info.hashCode() : 0);
-        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByAuthor")
+    public Collection<MailEntity> getMailById() {
+        return mailById;
+    }
+
+    public void setMailById(Collection<MailEntity> mailById) {
+        this.mailById = mailById;
+    }
+
+    @OneToMany(mappedBy = "userByReceiver")
+    public Collection<MailEntity> getMailById_0() {
+        return mailById_0;
+    }
+
+    public void setMailById_0(Collection<MailEntity> mailById_0) {
+        this.mailById_0 = mailById_0;
+    }
+
+    @OneToMany(mappedBy = "userByCreateBy")
+    public Collection<ProjectEntity> getProjectsById() {
+        return projectsById;
+    }
+
+    public void setProjectsById(Collection<ProjectEntity> projectsById) {
+        this.projectsById = projectsById;
+    }
+
+    @OneToMany(mappedBy = "userByUser")
+    public Collection<ProjectUserEntity> getProjectUsersById() {
+        return projectUsersById;
+    }
+
+    public void setProjectUsersById(Collection<ProjectUserEntity> projectUsersById) {
+        this.projectUsersById = projectUsersById;
     }
 }

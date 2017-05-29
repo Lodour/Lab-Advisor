@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import org.apache.struts2.StrutsStatics;
-import org.gitshu.user.action.UserRegisterAction;
+import org.gitshu.user.action.UserRegister;
 import org.gitshu.user.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -21,7 +21,7 @@ public class UserRegisterInterceptor extends AbstractInterceptor {
 
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
-        UserRegisterAction action = (UserRegisterAction) actionInvocation.getAction();
+        UserRegister action = (UserRegister) actionInvocation.getAction();
         String username = action.getModel().getUsername();
         UserService userService = getUserService(actionInvocation);
         if (userService.chkUsername(username)) {

@@ -1,8 +1,8 @@
 package org.gitshu.user.service.impl;
 
 import org.gitshu.constant.UserType;
+import org.gitshu.entity.UserEntity;
 import org.gitshu.user.dao.UserDAO;
-import org.gitshu.user.entity.UserEntity;
 import org.gitshu.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

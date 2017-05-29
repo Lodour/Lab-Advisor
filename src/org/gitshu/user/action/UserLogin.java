@@ -1,7 +1,7 @@
 package org.gitshu.user.action;
 
 import com.opensymphony.xwork2.ModelDriven;
-import org.gitshu.user.entity.UserEntity;
+import org.gitshu.entity.UserEntity;
 import org.gitshu.user.service.UserService;
 import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * 用户登录
  */
 @Controller
-public class UserLoginAction extends ActionVariableSupport implements ModelDriven<UserEntity> {
+public class UserLogin extends ActionVariableSupport implements ModelDriven<UserEntity> {
     // 使用UserService进行事务请求
     private final UserService userService;
 
@@ -20,7 +20,7 @@ public class UserLoginAction extends ActionVariableSupport implements ModelDrive
     private UserEntity userEntity;
 
     @Autowired
-    public UserLoginAction(UserService userService) {
+    public UserLogin(UserService userService) {
         this.userService = userService;
         userEntity = new UserEntity();
     }

@@ -12,18 +12,11 @@
     <title>SSH测试</title>
 </head>
 <body>
-
-<p>当前用户: ${sessionScope.get("username")}</p>
-
-<ul>
-    <li><a href="${pageContext.request.contextPath}/user/login.jsp">登陆</a></li>
-    <li><a href="${pageContext.request.contextPath}/user/register.jsp">注册</a></li>
-    <li><a href="<s:url namespace="/user" action="logoutAction"/>">注销</a></li>
-</ul>
-
-<s:action name="listUserAction" namespace="/user"/>
-
-${tt[0].getUsername()}
-${tt[0].getLastLogin()}
-
+    <%
+    if ("".equals(session.getAttribute("username"))) {
+        response.sendRedirect("/user/login.jsp");
+    } else {
+        response.sendRedirect("/user/profiles.jsp");
+    }
+%>
 </html>

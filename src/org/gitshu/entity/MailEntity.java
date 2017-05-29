@@ -1,22 +1,21 @@
-package org.gitshu.mail.entity;
+package org.gitshu.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Lodour on 17/5/29 11:54.
- * 站内信实体
+ * Created by Lodour on 17/5/29 16:20.
  */
 @Entity
 @Table(name = "mail", schema = "test", catalog = "")
 public class MailEntity {
     private int id;
-    private int author;
-    private int sendto;
     private Timestamp createTime;
     private byte isRead;
     private String content;
     private int type;
+    private UserEntity userByAuthor;
+    private UserEntity userByReceiver;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -26,26 +25,6 @@ public class MailEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "author", nullable = false)
-    public int getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(int author) {
-        this.author = author;
-    }
-
-    @Basic
-    @Column(name = "sendto", nullable = false)
-    public int getSendto() {
-        return sendto;
-    }
-
-    public void setSendto(int sendto) {
-        this.sendto = sendto;
     }
 
     @Basic
@@ -96,8 +75,6 @@ public class MailEntity {
         MailEntity that = (MailEntity) o;
 
         if (id != that.id) return false;
-        if (author != that.author) return false;
-        if (sendto != that.sendto) return false;
         if (isRead != that.isRead) return false;
         if (type != that.type) return false;
         if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
@@ -107,12 +84,30 @@ public class MailEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + author;
-        result = 31 * result + sendto;
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (int) isRead;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + type;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "author", referencedColumnName = "id", nullable = false)
+    public UserEntity getUserByAuthor() {
+        return userByAuthor;
+    }
+
+    public void setUserByAuthor(UserEntity userByAuthor) {
+        this.userByAuthor = userByAuthor;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "receiver", referencedColumnName = "id", nullable = false)
+    public UserEntity getUserByReceiver() {
+        return userByReceiver;
+    }
+
+    public void setUserByReceiver(UserEntity userByReceiver) {
+        this.userByReceiver = userByReceiver;
     }
 }

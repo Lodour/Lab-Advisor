@@ -1,6 +1,6 @@
 package org.gitshu.user.dao;
 
-import org.gitshu.user.entity.UserEntity;
+import org.gitshu.entity.UserEntity;
 
 import java.util.List;
 
@@ -62,6 +62,7 @@ public interface UserDAO {
 
     /**
      * 检测用户是否存在
+     *
      * @param username 用户名
      * @return 是否存在
      */

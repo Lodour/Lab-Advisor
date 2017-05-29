@@ -1,7 +1,7 @@
 package user;
 
+import org.gitshu.entity.UserEntity;
 import org.gitshu.user.dao.UserDAO;
-import org.gitshu.user.entity.UserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

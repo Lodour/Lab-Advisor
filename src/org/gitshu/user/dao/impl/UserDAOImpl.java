@@ -1,7 +1,7 @@
 package org.gitshu.user.dao.impl;
 
+import org.gitshu.entity.UserEntity;
 import org.gitshu.user.dao.UserDAO;
-import org.gitshu.user.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

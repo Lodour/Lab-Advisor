@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
  * 检测用户名是否存在
  */
 @Controller
-public class CheckUsernameAction extends ActionVariableSupport {
+public class CheckUsername extends ActionVariableSupport {
     private final UserService userService;
 
     @Autowired
-    public CheckUsernameAction(UserService userService) {
+    public CheckUsername(UserService userService) {
         this.userService = userService;
     }
 
