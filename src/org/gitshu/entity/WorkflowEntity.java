@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by Lodour on 17/5/29 16:20.
+ * Created by Lodour on 17/5/29 20:26.
  */
 @Entity
 @Table(name = "workflow", schema = "test", catalog = "")

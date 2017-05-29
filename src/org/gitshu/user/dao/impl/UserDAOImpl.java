@@ -146,4 +146,18 @@ public class UserDAOImpl implements UserDAO {
     public void update(UserEntity userEntity) {
         getSession().update(userEntity);
     }
+
+    /**
+     * 根据ID获取用户
+     *
+     * @param id 用户ID
+     * @return 用户实体
+     */
+    @Override
+    public UserEntity getById(int id) {
+        return (UserEntity) getSession()
+                .createQuery("from UserEntity where id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }

@@ -74,4 +74,12 @@ public interface UserDAO {
      * @param userEntity 用户实体
      */
     void update(UserEntity userEntity);
+
+    /**
+     * 根据ID获取用户
+     *
+     * @param id 用户ID
+     * @return 用户实体
+     */
+    UserEntity getById(int id);
 }

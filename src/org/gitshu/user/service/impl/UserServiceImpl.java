@@ -91,4 +91,15 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> getAllUserEntities() {
         return userDAO.getAllUserEntities();
     }
+
+    /**
+     * 根据用户名获取用户实体
+     *
+     * @param username 用户名
+     * @return 用户实体
+     */
+    @Override
+    public UserEntity getByUsername(String username) {
+        return userDAO.getByUsername(username);
+    }
 }

@@ -58,4 +58,13 @@ public interface UserService {
      * @return 所有的用户实体
      */
     List<UserEntity> getAllUserEntities();
+
+
+    /**
+     * 根据用户名获取用户实体
+     *
+     * @param username 用户名
+     * @return 用户实体
+     */
+    UserEntity getByUsername(String username);
 }

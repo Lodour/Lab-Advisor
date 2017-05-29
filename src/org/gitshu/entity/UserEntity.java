@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by Lodour on 17/5/29 16:20.
+ * Created by Lodour on 17/5/29 20:26.
  */
 @Entity
 @Table(name = "user", schema = "test", catalog = "")
@@ -21,8 +21,8 @@ public class UserEntity {
     private Timestamp createTime;
     private Timestamp lastLogin;
     private String info;
-    private Collection<MailEntity> mailById;
-    private Collection<MailEntity> mailById_0;
+    private Collection<MailEntity> mailByAuthor;
+    private Collection<MailEntity> mailByReceiver;
     private Collection<ProjectEntity> projectsById;
     private Collection<ProjectUserEntity> projectUsersById;
 
@@ -173,21 +173,21 @@ public class UserEntity {
     }
 
     @OneToMany(mappedBy = "userByAuthor")
-    public Collection<MailEntity> getMailById() {
-        return mailById;
+    public Collection<MailEntity> getMailByAuthor() {
+        return mailByAuthor;
     }
 
-    public void setMailById(Collection<MailEntity> mailById) {
-        this.mailById = mailById;
+    public void setMailByAuthor(Collection<MailEntity> mailByAuthor) {
+        this.mailByAuthor = mailByAuthor;
     }
 
     @OneToMany(mappedBy = "userByReceiver")
-    public Collection<MailEntity> getMailById_0() {
-        return mailById_0;
+    public Collection<MailEntity> getMailByReceiver() {
+        return mailByReceiver;
     }
 
-    public void setMailById_0(Collection<MailEntity> mailById_0) {
-        this.mailById_0 = mailById_0;
+    public void setMailByReceiver(Collection<MailEntity> mailByReceiver) {
+        this.mailByReceiver = mailByReceiver;
     }
 
     @OneToMany(mappedBy = "userByCreateBy")
