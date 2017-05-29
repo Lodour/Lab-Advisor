@@ -16,13 +16,14 @@
 <p>当前用户: ${sessionScope.get("username")}</p>
 
 <ul>
-    <li><a href="login.jsp">登陆</a></li>
-    <li><a href="register.jsp">注册</a></li>
-    <li><a href="logoutAction.action">注销</a></li>
+    <li><a href="${pageContext.request.contextPath}/user/login.jsp">登陆</a></li>
+    <li><a href="${pageContext.request.contextPath}/user/register.jsp">注册</a></li>
+    <li><a href="<s:url namespace="/user" action="logoutAction"/>">注销</a></li>
 </ul>
-<s:action name="listUserAction" executeResult="false" namespace="/"/>
+
+<s:action name="listUserAction" namespace="/user"/>
 
 ${tt[0].getUsername()}
-${tt[0].getCreateTime()}
+${tt[0].getLastLogin()}
 
 </html>

@@ -5,29 +5,15 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="default" namespace="/" extends="struts-default">
+    <!-- 指定资源编码类型 -->
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!-- 指定每次配置文件更改后，自动重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="false"/>
 
-        <action name="listUserAction" class="org.gitshu.user.action.UserListAction">
-            <result name="success">list.jsp</result>
-        </action>
+    <!-- 默认 -->
+    <package name="default" namespace="/" extends="struts-default"/>
 
-        <action name="registerAction" class="org.gitshu.user.action.UserRegisterAction">
-            <result name="success">index.jsp</result>
-            <result name="error">register.jsp</result>
-        </action>
+    <!-- 引入其他子配置 -->
+    <include file="org/gitshu/user/action/struts-user.xml"/>
 
-        <action name="loginAction" class="org.gitshu.user.action.UserLoginAction">
-            <result name="success">index.jsp</result>
-            <result name="error">login.jsp</result>
-        </action>
-
-        <action name="logoutAction" class="org.gitshu.user.action.UserLogoutAction">
-            <result name="success">index.jsp</result>
-        </action>
-
-        <action name="CheckUsername" class="org.gitshu.user.action.CheckUsername">
-            <result name="done">check.jsp</result>
-        </action>
-
-    </package>
 </struts>

@@ -7,7 +7,7 @@ package org.gitshu.constant;
 public final class UserType {
     public final static int ADMIN = 0;
     public final static int TEACHER = 1;
-    public final static int STUDNET = 2;
+    public final static int STUDENT = 2;
     public final static int GUEST = 3;
 
     public final static String[] CAPTION = new String[]{"管理员", "教师", "学生", "访客"};

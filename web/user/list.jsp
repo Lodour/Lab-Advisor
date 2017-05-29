@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-listlistlist
 
 <s:if test="userEntityList.size() > 0">
     <table border="1px" cellpadding="8px">
