@@ -28,18 +28,17 @@ public class ProfileUpdate extends ActionVariableSupport implements ModelDriven<
     public String execute() {
         try {
             String username = (String) httpSession.get("username");
-            if (userEntity.getEmail() != null) {
-                userEntity.setEmail(userEntity.getEmail());
-                userService.update(userEntity);
+            UserEntity user = userService.getByUsername(username);
+            if (!"".equals(userEntity.getEmail())) {
+                user.setEmail(userEntity.getEmail());
             }
-            if (userEntity.getMobile() != null) {
-                userEntity.setMobile(userEntity.getMobile());
-                userService.update(userEntity);
+            if (!"".equals(userEntity.getMobile())) {
+                user.setMobile(userEntity.getMobile());
             }
-            if (userEntity.getInfo() != null) {
-                userEntity.setInfo(userEntity.getInfo());
-                userService.update(userEntity);
+            if (!"".equals(userEntity.getInfo())) {
+                user.setInfo(userEntity.getInfo());
             }
+            userService.update(user);
             return SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();

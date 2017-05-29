@@ -26,6 +26,7 @@ public class SendMail extends ActionVariableSupport {
             mailService.send(author, receiver, content);
             return SUCCESS;
         } catch (Exception e) {
+            httpServletRequest.setAttribute("result", "该用户不存在");
             return ERROR;
         }
     }

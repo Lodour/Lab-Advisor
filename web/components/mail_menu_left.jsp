@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: Pealing
-  Date: 2017/5/28
-  Time: 15:17
+  Date: 2017/5/29
+  Time: 23:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,7 +18,8 @@
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/npm.js"></script>
+    <script stc="js/npm.js
+    "></script>
 
     <!--表单验证-->
     <link href="${pageContext.request.contextPath}/static/css/validationEngine.jquery.css" rel="stylesheet"/>
@@ -34,9 +34,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">GitSHU</div>
         <div class="list-group" style="margin: 0 auto;">
-            <a href="${pageContext.request.contextPath}/user/profiles-edit.jsp" class="list-group-item">个人信息</a>
-            <a href="${pageContext.request.contextPath}/user/password-reset.jsp" class="list-group-item">修改密码</a>
-            <a href="#" class="list-group-item">项目列表</a>
+            <a href="${pageContext.request.contextPath}/mail/inBox.jsp" class="list-group-item">收件箱</a>
+            <a href="${pageContext.request.contextPath}/mail/outBox.jsp" class="list-group-item">发件箱</a>
+            <a href="${pageContext.request.contextPath}/mail/sendMail.jsp" class="list-group-item">写邮件</a>
         </div>
     </div>
 </div>

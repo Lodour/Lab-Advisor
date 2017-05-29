@@ -29,16 +29,18 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/index.jsp">Git SHU</a>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+        <ul class="nav navbar-nav navbar-right">
+            <%
+                if (!"".equals(session.getAttribute("username"))) {
+            %>
+            <li><a href="../user/profiles.jsp">返回主页</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Dropdown <span class="caret"></span></a>
+                   aria-expanded="false"><span class="glyphicon glyphicon-plus"></span><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="../user/profiles-edit.jsp">修改个人信息</a></li>
+                    <li><a href="../user/password-reset.jsp">修改密码</a></li>
+                    <li><a href="../mail/sendMail.jsp">站内信</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Separated link</a></li>
                     <li role="separator" class="divider"></li>
@@ -46,15 +48,30 @@
                 </ul>
             </li>
             <li>
-                <%
-                    if (!"".equals(session.getAttribute("username"))) {
-                %>
                 <a href="<s:url namespace="/user" action="logout"/>">注销</a>
-                <%
-                    }
-                %>
             </li>
+            <%
+            } else {
+            %>
+            <li>
+                <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
+            </li>
+
+            <li>
+                <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
+            </li>
+            <%
+                }
+            %>
         </ul>
+        <form class="navbar-form navbar-left">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span
+                        class="glyphicon glyphicon-search"></span></span>
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
 </nav>
 </body>
