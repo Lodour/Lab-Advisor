@@ -2,7 +2,6 @@ package mail;
 
 import org.gitshu.entity.MailEntity;
 import org.gitshu.mail.service.MailService;
-import org.gitshu.user.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ import java.util.List;
 public class MailServiceTest {
     @Autowired
     private MailService mailService;
-
-    @Autowired
-    private UserService userService;
 
     @Test
     public void sendTest() {

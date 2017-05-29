@@ -2,7 +2,7 @@ package org.gitshu.user.dao.impl;
 
 import org.gitshu.entity.UserEntity;
 import org.gitshu.user.dao.UserDAO;
-import org.hibernate.Session;
+import org.gitshu.utils.dao.DAOSupport;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,17 +22,11 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class UserDAOImpl implements UserDAO {
-
-    private final SessionFactory sessionFactory;
+public class UserDAOImpl extends DAOSupport implements UserDAO {
 
     @Autowired
-    public UserDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    private Session getSession() {
-        return this.sessionFactory.getCurrentSession();
+    protected UserDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
     /**

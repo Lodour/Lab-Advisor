@@ -3,7 +3,7 @@ package org.gitshu.mail.dao.impl;
 import org.gitshu.entity.MailEntity;
 import org.gitshu.entity.UserEntity;
 import org.gitshu.mail.dao.MailDAO;
-import org.hibernate.Session;
+import org.gitshu.utils.dao.DAOSupport;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,16 +18,11 @@ import java.util.Collection;
  */
 @Repository
 @Transactional
-public class MailDAOImpl implements MailDAO {
-    private final SessionFactory sessionFactory;
+public class MailDAOImpl extends DAOSupport implements MailDAO {
 
     @Autowired
-    public MailDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    private Session getSession() {
-        return this.sessionFactory.getCurrentSession();
+    protected MailDAOImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
     }
 
     /**
@@ -64,30 +59,30 @@ public class MailDAOImpl implements MailDAO {
     /**
      * 获取某用户收到的所有邮件
      *
-     * @param userEntity 用户实体
+     * @param receiver 用户
      * @return 所有邮件实体
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Collection<MailEntity> getInbox(UserEntity userEntity) {
+    @SuppressWarnings("unchecked")
+    public Collection<MailEntity> getInbox(String receiver) {
         return (Collection<MailEntity>) getSession()
-                .createQuery("from MailEntity m where m.userByReceiver = :receiver")
-                .setParameter("receiver", userEntity)
+                .createQuery("from MailEntity m where m.userByReceiver.username = :receiver")
+                .setParameter("receiver", receiver)
                 .getResultList();
     }
 
     /**
      * 获取某用户发送的所有邮件
      *
-     * @param userEntity 用户实体
+     * @param author 用户
      * @return 所有邮件实体
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Collection<MailEntity> getOutbox(UserEntity userEntity) {
+    @SuppressWarnings("unchecked")
+    public Collection<MailEntity> getOutbox(String author) {
         return (Collection<MailEntity>) getSession()
-                .createQuery("from MailEntity m where m.userByAuthor = :author")
-                .setParameter("author", userEntity)
+                .createQuery("from MailEntity m where m.userByAuthor.username = :author")
+                .setParameter("author", author)
                 .getResultList();
     }
 
