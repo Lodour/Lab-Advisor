@@ -20,8 +20,8 @@ public class SendMail extends ActionVariableSupport {
 
     public String execute() {
         String author = (String) httpSession.get("username");
-        String receiver = (String) httpServletRequest.getAttribute("username");
-        String content = (String) httpServletRequest.getAttribute("content");
+        String receiver = httpServletRequest.getParameter("username");
+        String content = httpServletRequest.getParameter("content");
         try {
             mailService.send(author, receiver, content);
             return SUCCESS;
