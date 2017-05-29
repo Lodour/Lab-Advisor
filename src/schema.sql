@@ -105,3 +105,16 @@ CREATE TABLE workflow (
 #   CONSTRAINT FOREIGN KEY (repository) REFERENCES repository (id)
 # )
 #   DEFAULT CHARSET = utf8;
+#
+# -- 代码仓库的commit
+# DROP TABLE IF EXISTS 'commit';
+# CREATE TABLE 'commit' (
+#   id         INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+#   repository INTEGER NOT NULL,
+#   author     INTEGER NOT NULL,
+#   title      CHAR(255),
+#   info       TEXT,
+#   CONSTRAINT FOREIGN KEY (repository) REFERENCES repository (id),
+#   CONSTRAINT FOREIGN KEY (author) REFERENCES user (id)
+# )
+#   DEFAULT CHARSET = utf8;

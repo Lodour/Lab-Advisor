@@ -33,6 +33,7 @@
             <file>file://$MODULE_DIR$/src/org/gitshu/user/action/struts-user.xml</file>
             <file>file://$MODULE_DIR$/src/org/gitshu/mail/action/struts-mail.xml</file>
             <file>file://$MODULE_DIR$/src/org/gitshu/project/action/struts-project.xml</file>
+            <file>file://$MODULE_DIR$/src/org/gitshu/workflow/action/struts-workflow.xml</file>
           </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
