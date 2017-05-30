@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="jap" uri="/struts-tags" %>
-<jsp:useBean id="project" scope="page" class="org.gitshu.entity.ProjectEntity"></jsp:useBean>
+<s:action name="projectUpdate" namespace="/project"/>
+<jsp:useBean id="project" scope="request" class="org.gitshu.entity.ProjectEntity"></jsp:useBean>
 <html>
 <head>
     <meta charset="utf-8">
@@ -21,22 +22,24 @@
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
 
-    <title>Project Settings</title>
+    <title>GitSHU 修改个人信息</title>
 </head>
 <body>
 <jap:include value="/components/banner.jsp"/>
-<jap:include value="/components/user_menu_left.jsp"/>
-
-<form action="<s:url namespace="/project" action="projectUpdate">" method="post">
+<br/>
+<br/>
+<br/>
+<br/>
+<form action="<s:url namespace="/project" action="projectUpdate"/>" method="post">
     <div class="form-group">
         <span class="glyphicon glyphicon-title" aria-hidden="true"></span>
         <label>Title</label>
-        <label class="form-control" id="perinfo_title">${project.title}</label>
+        <input name="title" type="text" class="form-control"  placeholder="${project.title}">
     </div>
     <div class="form-group">
         <span class="glyphicon glyphicon-info" aria-hidden="true"></span>
         <label>Description</label>
-        <label class="form-control" id="perinfo_info">${project.info}</label>
+        <input name="info" type="text" class="form-control"  placeholder="${project.info}">
     </div>
     <button type="submit" class="btn btn-info">Update</button>
 
