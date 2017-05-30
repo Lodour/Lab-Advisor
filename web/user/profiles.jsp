@@ -17,7 +17,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>GitSHU 个人信息</title>
 </head>
 <body>
@@ -75,7 +75,7 @@
         <div class="col-md-5 list-group-item" style="margin-left: 3%;">
             <div style="margin:3% auto;">
                 <%
-                    out.println("<a href=\"/user/workTree.jsp?id=" + project.get(project.size() - 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(project.size() - 1).getTitle() + "</a>");
+                    out.println("<a href=\"/project/detail.jsp?id=" + project.get(project.size() - 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(project.size() - 1).getTitle() + "</a>");
                     out.println(" <p style=\"color: #777;font-size: 80%;\">" + project.get(project.size() - 1).getInfo() + "</p>");
                     out.println(" <p style=\"color: #333;font-size: 80%;\">" + new Date(project.get(project.size() - 1).getCreateTime().getTime()) + "</p>");
                 %>
