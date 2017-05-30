@@ -51,7 +51,7 @@
         <div class="col-md-5 list-group-item" style=" margin-left: 3%;">
             <div style="margin:3% auto;">
                 <%
-                    out.println("<a href=\"/user/workTree.jsp?id=" + project.get(i).getId() + "\"style=\"margin-top: 10%;\">" + project.get(i).getTitle() + "</a>");
+                    out.println("<a href=\"/user/workflowView.jsp?id=" + project.get(i).getId() + "\"style=\"margin-top: 10%;\">" + project.get(i).getTitle() + "</a>");
                     out.println(" <p style=\"color: #777;font-size: 80%;\">" + project.get(i).getInfo() + "</p>");
                     out.println(" <p style=\"color: #333;font-size: 80%;\">" + new Date(project.get(i).getCreateTime().getTime()) + "</p>");
                 %>
@@ -60,7 +60,7 @@
         <div class="col-md-5 list-group-item" style="margin-left: 3%;">
             <div style="margin:3% auto;">
                 <%
-                    out.println("<a href=\"/user/workTree.jsp?id=" + project.get(i + 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(i + 1).getTitle() + "</a>");
+                    out.println("<a href=\"/user/workflowView.jsp?id=" + project.get(i + 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(i + 1).getTitle() + "</a>");
                     out.println(" <p style=\"color: #777;font-size: 80%;\">" + project.get(i + 1).getInfo() + "</p>");
                     out.println(" <p style=\"color: #333;font-size: 80%;\">" + new Date(project.get(i + 1).getCreateTime().getTime()) + "</p>");
                 %>
@@ -75,7 +75,7 @@
         <div class="col-md-5 list-group-item" style="margin-left: 3%;">
             <div style="margin:3% auto;">
                 <%
-                    out.println("<a href=\"/user/workTree.jsp?id=" + project.get(project.size() - 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(project.size() - 1).getTitle() + "</a>");
+                    out.println("<a href=\"/user/workflowView.jsp?id=" + project.get(project.size() - 1).getId() + "\"style=\"margin-top: 10%;\">" + project.get(project.size() - 1).getTitle() + "</a>");
                     out.println(" <p style=\"color: #777;font-size: 80%;\">" + project.get(project.size() - 1).getInfo() + "</p>");
                     out.println(" <p style=\"color: #333;font-size: 80%;\">" + new Date(project.get(project.size() - 1).getCreateTime().getTime()) + "</p>");
                 %>

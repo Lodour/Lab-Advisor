@@ -30,13 +30,14 @@
 </head>
 <body>
 <jap:include value="/components/banner.jsp"/>
+<s:action name="WorkflowView" namespace="/workflow"/>
+<jsp:useBean id="projectEntity" scope="request" type="org.gitshu.entity.ProjectEntity"/>
+
 <div style="position: absolute;left: 10%;top: 15%;width: 80%;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <%
-                String id = request.getParameter("id");
-                out.println("<h3><span class=\"glyphicon glyphicon-calendar\" aria-hidden=\"true\"></span>  " + id + "</h3>");
-            %>
+            <h3><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${projectEntity.title}</h3>
+            ${nodes}
         </div>
         <div class="panel-body">
             <div style="float: left;text-align: center;left: 30%;margin-left: 15%;">
@@ -45,11 +46,9 @@
               <span class="label label-success label-lg" style="max-width: 300px;">
               <span class="glyphicon glyphicon-star" aria-hidden="true"></span> start</span></h3>
                 </div>
-                <form class="navbar-form" action="<s:url action="" namespace=""/> " method="post">
-                    <%
-                        out.println("<input type=\"text\" name=\"id\" id=\"profile_id\" style=\"display: none;\"value=\"" + id + "\"/>\n");
-
-                    %>
+                <form class="navbar-form" action="<s:url action="WorkflowCreate" namespace="/workflow"/>"
+                      method="post">
+                    <input type="text" name="id" id="profile_id" style="display: none;" value="${projectEntity.id}"/>
                     <div class="form-group" style="margin-bottom: 5%;">
                         <input id="nodeNames" name="nodeNames" type="text" class="form-control" placeholder="新的结点">
                     </div>

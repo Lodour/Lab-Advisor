@@ -46,19 +46,26 @@
         <div class="form-group">
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <label>Gender:</label>
-            <script>$('#optionsRadios${userEntity.gender}').checked(true)</script>
+            <input id="per_gender" type="text" value="${userEntity.gender}" style="display: none;">
             <div class="radio">
                 <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="man">男
+                    <input type="radio" name="optionsRadios" id="optionsRadios0" value="0">男
                 </label>
                 <label style="margin-left: 10px;">
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="woman">女
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="1">女
                 </label>
                 <label style="margin-left: 10px;">
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="sicrity">保密
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">保密
                 </label>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(
+                function () {
+                    var a = $('#per_gender').val();
+                    $('#optionsRadios' + ("" + a)).attr('checked', true);
+                });
+        </script>
         <div class="form-group">
             <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
             <label>Phone:</label>

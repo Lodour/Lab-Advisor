@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class WorkflowDAOImpl extends DAOSupport implements WorkflowDAO {
      */
     @Override
     public int create(WorkflowEntity workflowEntity) {
+        workflowEntity.setCreateTime(new Timestamp(System.currentTimeMillis()));
         getSession().save(workflowEntity);
         return getSession()
                 .createQuery("select id from WorkflowEntity as w where w.projectByProject = :proj order by id desc")
