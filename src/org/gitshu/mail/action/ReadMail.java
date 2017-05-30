@@ -25,7 +25,7 @@ public class ReadMail extends ActionVariableSupport {
         int mailEntityId = Integer.valueOf(httpServletRequest.getParameter("id"));
         MailEntity mailEntity = mailService.getById(mailEntityId);
         if (username.equals(mailEntity.getUserByReceiver().getUsername())) {
-            httpServletRequest.setAttribute("mail", mailEntity);
+            httpServletRequest.setAttribute("mail", mailEntity.getContent());
             mailService.read(mailEntityId);
             return SUCCESS;
         }

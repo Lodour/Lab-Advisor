@@ -19,6 +19,11 @@ public class WorkflowCreate extends ActionVariableSupport {
     }
 
     public String execute() {
-        throw new UnsupportedOperationException();
+        int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        String nodeNames = httpServletRequest.getParameter("name");
+        String nodeInfo = httpServletRequest.getParameter("info");
+        int newNodeId = workflowService.create(id, nodeNames, nodeInfo);
+        httpServletRequest.setAttribute("newNodeId", newNodeId);
+        return SUCCESS;
     }
 }

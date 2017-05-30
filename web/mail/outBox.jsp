@@ -23,7 +23,7 @@
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/npm.js"></script>
+    <script stc="js/npm.js"></script>
     <title>GitSHU 收件箱</title>
 </head>
 <body>

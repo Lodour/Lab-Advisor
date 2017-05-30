@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="jap" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,20 +29,21 @@
     <title>用户登录</title>
 </head>
 <body>
+<jap:include value="../components/banner.jsp"/>
 <div id="background" style="position:absolute; width: 100%;height: 100%;background-color: #E4E4E4; left: 0;top:0;">
     <nav>
-        <div id="logo" style="position: absolute;left: 47.5%;top: 8%;width: 5%;height: 10%;border-radius: 5px;">
+        <div id="logo" style="position: absolute;left: 47.5%;top: 12%;width: 5%;height: 10%;border-radius: 5px;">
             <img src="${pageContext.request.contextPath}/static/image/shu.jpg" width="100%" height="100%"
                  style="border-radius: 30px;">
         </div>
-        <div id="logo_word" style="position: absolute;left: 37.5%;top: 18%;width: 25%;height: 10%;text-align: center;">
+        <div id="logo_word" style="position: absolute;left: 37.5%;top: 22%;width: 25%;height: 10%;text-align: center;">
             <p class="create-account-callout mt-3" style="margin: 4% 5%;font-size: 29px;color: #6E6E6E">
                 Sign in to GitSHU
             </p>
         </div>
     </nav>
 
-    <div id="concent" style="position: absolute;left: 37.5%;top: 30%;width: 25%;height: 43%;">
+    <div id="concent" style="position: absolute;left: 37.5%;top: 34%;width: 25%;height: 43%;">
         <form id="form_login" action="<s:url namespace="/user" action="login"/>" method="post">
             <div style="background-color: white; border-radius: 10px;border: 1px solid #C9C9C9">
                 <label style="margin: 10%  10%  3%;">
@@ -56,8 +58,8 @@
                     Password
                     <a href="password-reset.jsp" class="label-link" style="margin-left: 60px;">Forgot password?</a>
                 </label>
-                <input name="password" class="form-control form-control input-block" id="login_password"
-                       name="login_password" tabindex="2" type="password" style="margin:0 10%;width: 80%;"/>
+                <input name="password" class="form-control form-control input-block" id="login_password" tabindex="2"
+                       type="password" style="margin:0 10%;width: 80%;"/>
 
                 <input class="btn btn-primary btn-block" data-disable-with="Signing in…" name="commit" tabindex="3"
                        type="submit" value="Sign in" style="margin:5% 10%;width: 80%;"/>

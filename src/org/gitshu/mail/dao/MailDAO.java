@@ -31,18 +31,18 @@ public interface MailDAO {
     /**
      * 获取某用户收到的所有邮件
      *
-     * @param receiver 用户
+     * @param userEntity 用户实体
      * @return 所有邮件实体
      */
-    Collection<MailEntity> getInbox(String receiver);
+    Collection<MailEntity> getInbox(UserEntity userEntity);
 
     /**
      * 获取某用户发送的所有邮件
      *
-     * @param author 用户
+     * @param userEntity 用户实体
      * @return 所有邮件实体
      */
-    Collection<MailEntity> getOutbox(String author);
+    Collection<MailEntity> getOutbox(UserEntity userEntity);
 
     /**
      * 设置邮件状态

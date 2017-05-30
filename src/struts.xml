@@ -20,5 +20,5 @@
     <include file="org/gitshu/mail/action/struts-mail.xml"/>
     <include file="org/gitshu/project/action/struts-project.xml"/>
     <include file="org/gitshu/workflow/action/struts-workflow.xml"/>
-
+    <include file="org/gitshu/repository/action/struts-repo.xml"/>
 </struts>

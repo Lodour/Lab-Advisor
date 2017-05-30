@@ -103,6 +103,6 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
      */
     @Override
     public List<ProjectEntity> getJoinedProjects(String username) {
-        throw new UnsupportedOperationException();
+        return projectDAO.getJoinedProjects(username);
     }
 }

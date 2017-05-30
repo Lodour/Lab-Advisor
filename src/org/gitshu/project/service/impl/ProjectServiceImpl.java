@@ -8,6 +8,8 @@ import org.gitshu.user.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Lodour on 17/5/29 22:16.
  * 项目服务的实现
@@ -55,6 +57,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectEntity getById(int id) {
         return projectDAO.getById(id);
+    }
+
+    @Override
+    public List<ProjectEntity> getAllProjectEntities() {
+        return projectDAO.getAllProjectEntities();
     }
 
 }

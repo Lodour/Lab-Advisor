@@ -15,8 +15,9 @@ public interface WorkflowService {
      * @param projectId 从属项目ID
      * @param title     结点标题
      * @param info      结点介绍
+     * @return 新建结点的ID
      */
-    void create(int projectId, String title, String info);
+    int create(int projectId, String title, String info);
 
     /**
      * 更新一个结点

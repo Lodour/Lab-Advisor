@@ -2,6 +2,8 @@ package org.gitshu.project.service;
 
 import org.gitshu.entity.ProjectEntity;
 
+import java.util.List;
+
 /**
  * Created by Lodour on 17/5/29 21:58.
  * 项目服务接口
@@ -31,4 +33,5 @@ public interface ProjectService {
      */
     ProjectEntity getById(int id);
 
+    List<ProjectEntity> getAllProjectEntities();
 }

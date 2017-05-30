@@ -20,7 +20,6 @@
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
-    <script stc="/static/js/npm.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>GitSHU Banner</title>
 </head>
@@ -54,11 +53,11 @@
             } else {
             %>
             <li>
-                <a href="${pageContext.request.contextPath}/user/login.jsp">登录</a>
+                <a href="login.jsp">登录</a>
             </li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
+                <a href="register.jsp">注册</a>
             </li>
             <%
                 }

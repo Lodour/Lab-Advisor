@@ -22,7 +22,7 @@ public class ProjectListJoined extends ActionVariableSupport {
     }
 
     public String execute() {
-        String username = httpServletRequest.getParameter("username");
+        String username = (String) httpSession.get("username");
         List<ProjectEntity> projectEntityList = projectMemberService.getJoinedProjects(username);
         httpServletRequest.setAttribute("projects", projectEntityList);
         return SUCCESS;

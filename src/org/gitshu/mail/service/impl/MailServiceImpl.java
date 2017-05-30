@@ -121,7 +121,8 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public List<MailEntity> getInbox(String user) {
-        Collection<MailEntity> mailEntityCollection = mailDAO.getInbox(user);
+        UserEntity userEntity = userDAO.getByUsername(user);
+        Collection<MailEntity> mailEntityCollection = mailDAO.getInbox(userEntity);
         return (List<MailEntity>) mailEntityCollection;
     }
 
@@ -133,7 +134,8 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public List<MailEntity> getOutbox(String author) {
-        Collection<MailEntity> mailEntityCollection = mailDAO.getOutbox(author);
+        UserEntity userEntity = userDAO.getByUsername(author);
+        Collection<MailEntity> mailEntityCollection = mailDAO.getOutbox(userEntity);
         return (List<MailEntity>) mailEntityCollection;
     }
 

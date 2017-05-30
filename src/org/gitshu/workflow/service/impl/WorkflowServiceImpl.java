@@ -1,6 +1,8 @@
 package org.gitshu.workflow.service.impl;
 
+import org.gitshu.entity.ProjectEntity;
 import org.gitshu.entity.WorkflowEntity;
+import org.gitshu.project.dao.ProjectDAO;
 import org.gitshu.workflow.dao.WorkflowDAO;
 import org.gitshu.workflow.service.WorkflowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,14 @@ import java.util.List;
 public class WorkflowServiceImpl implements WorkflowService {
 
     private final WorkflowDAO workflowDAO;
+    private final ProjectDAO projectDAO;
 
     @Autowired
-    public WorkflowServiceImpl(WorkflowDAO workflowDAO) {
+    public WorkflowServiceImpl(WorkflowDAO workflowDAO, ProjectDAO projectDAO) {
         this.workflowDAO = workflowDAO;
+        this.projectDAO = projectDAO;
     }
+
 
     /**
      * 新建工作流结点
@@ -28,10 +33,16 @@ public class WorkflowServiceImpl implements WorkflowService {
      * @param projectId 从属项目ID
      * @param title     结点标题
      * @param info      结点介绍
+     * @return 新建结点的ID
      */
     @Override
-    public void create(int projectId, String title, String info) {
-
+    public int create(int projectId, String title, String info) {
+        ProjectEntity projectEntity = projectDAO.getById(projectId);
+        WorkflowEntity workflowEntity = new WorkflowEntity();
+        workflowEntity.setTitle(title);
+        workflowEntity.setInfo(info);
+        workflowEntity.setProjectByProject(projectEntity);
+        return workflowDAO.create(workflowEntity);
     }
 
     /**
@@ -41,7 +52,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public void update(WorkflowEntity workflowEntity) {
-
+        workflowDAO.update(workflowEntity);
     }
 
     /**
@@ -51,7 +62,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public void delete(int workflowId) {
-
+        workflowDAO.delete(workflowId);
     }
 
     /**
@@ -61,7 +72,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public void setFinished(int workflowId) {
-
+        workflowDAO.setStatus(workflowId, 2);
     }
 
     /**
@@ -71,7 +82,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public void setUnfinished(int workflowId) {
-
+        workflowDAO.setStatus(workflowId, 0);
     }
 
     /**
@@ -81,7 +92,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public void setProcessing(int workflowId) {
-
+        workflowDAO.setStatus(workflowId, 1);
     }
 
     /**
@@ -92,7 +103,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public WorkflowEntity getById(int workflowId) {
-        return null;
+        return workflowDAO.getById(workflowId);
     }
 
     /**
@@ -103,6 +114,6 @@ public class WorkflowServiceImpl implements WorkflowService {
      */
     @Override
     public List<WorkflowEntity> getByProjectId(int projectId) {
-        return null;
+        return workflowDAO.getByProjectId(projectId);
     }
 }

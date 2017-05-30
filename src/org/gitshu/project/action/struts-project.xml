@@ -6,6 +6,8 @@
 
 <struts>
     <package name="project" namespace="/project" extends="default">
-
+        <action name="projectListJoined" class="org.gitshu.project.action.ProjectListJoined">
+            <result name="success">/user/profiles.jsp</result>
+        </action>
     </package>
 </struts>

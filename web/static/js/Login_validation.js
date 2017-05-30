@@ -5,7 +5,7 @@ $(document).ready(function ($) {
     //登录时判断用户名是否存在
     $('#login_username').blur(function () {
         var a = $(this).val();
-        if (a === "")
+        if (a == "")
             return;
         $.ajax({
             url: '/user/checkUsername',

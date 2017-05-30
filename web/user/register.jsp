@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="jap" uri="/struts-tags" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -30,7 +31,7 @@
     <title>GitSHU 用户注册</title>
 </head>
 <body>
-<jsp:include page="/components/banner.jsp"/>
+<jap:include value="/components/banner.jsp"/>
 
 <div style="position: absolute; left: 20%;top: 20%;width: 60%;">
     <h1>Join GitSHU</h1>
@@ -94,7 +95,7 @@
             <label>Introduction</label>
             <textarea class="form-control" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button id="register_submit" type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>
 </body>

@@ -19,7 +19,8 @@
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/npm.js"></script>
+    <script stc="js/npm.js
+    "></script>
 
     <!--表单验证-->
     <link href="${pageContext.request.contextPath}/static/css/validationEngine.jquery.css" rel="stylesheet"/>
