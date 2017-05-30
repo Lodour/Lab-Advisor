@@ -32,13 +32,14 @@
             <%
                 if (!"".equals(session.getAttribute("username"))) {
             %>
-            <li><a href="../user/profiles.jsp">返回主页</a></li>
+            <li><a href="../user/profiles.jsp?username=<%=session.getAttribute("username")%>">返回主页</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false"><span class="glyphicon glyphicon-plus"></span><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="../user/profiles-edit.jsp">修改个人信息</a></li>
                     <li><a href="../user/password-reset.jsp">修改密码</a></li>
+                    <li><a href="../project/create.jsp">新建项目</a></li>
                     <li><a href="../mail/sendMail.jsp">站内信</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Separated link</a></li>
