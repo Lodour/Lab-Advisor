@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="jap" uri="/struts-tags" %>
-<s:action name="userEntitySet" namespace="/user"/>
+<s:action name="userEntitySet" namespace="/user" executeResult="false"/>
 <jsp:useBean id="userEntity" scope="request" type="org.gitshu.entity.UserEntity"/>
 <html>
 <head>

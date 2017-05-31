@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class WorkflowDelete extends ActionVariableSupport {
     private final WorkflowService workflowService;
+    private int projectId;
 
     @Autowired
     public WorkflowDelete(WorkflowService workflowService) {
@@ -20,7 +21,16 @@ public class WorkflowDelete extends ActionVariableSupport {
 
     public String execute() {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        projectId = workflowService.getById(id).getProjectByProject().getId();
         workflowService.delete(id);
         return SUCCESS;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 }

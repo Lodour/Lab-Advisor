@@ -112,6 +112,7 @@ public class WorkflowServiceImpl implements WorkflowService {
      * @param projectId 项目ID
      * @return 所有节点实体列表
      */
+    @SuppressWarnings("unchecked")
     @Override
     public List<WorkflowEntity> getByProjectId(int projectId) {
         return workflowDAO.getByProjectId(projectId);

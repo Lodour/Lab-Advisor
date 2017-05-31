@@ -2,6 +2,7 @@ package org.gitshu.project.service;
 
 import org.gitshu.entity.ProjectEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -34,4 +35,6 @@ public interface ProjectService {
     ProjectEntity getById(int id);
 
     List<ProjectEntity> getAllProjectEntities();
+
+    Collection<ProjectEntity> getCreatedProjects(String username);
 }

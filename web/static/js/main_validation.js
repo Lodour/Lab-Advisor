@@ -12,7 +12,7 @@ $(document).ready(function ($) {
     //Ajax注册时判断用户名是否重复
     $('#signup_username').blur(function () {
         var a = $(this).val();
-        if (a == "") {
+        if (a === "") {
             var x = $('<label style="color: palevioletred";><span class="glyphicon glyphicon-remove-sign"></span>  用户名不能为空</label>');
             $("#CheckUser").append(x);
             $("#register_submit").attr('disabled', true);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -72,6 +73,15 @@ public class ProjectDAOImpl extends DAOSupport implements ProjectDAO {
     public List<ProjectEntity> getJoinedProjects(String username) {
         return (List<ProjectEntity>) getSession()
                 .createQuery("select projectByProject from ProjectUserEntity as u where u.userByUser.username = :username")
+                .setParameter("username", username)
+                .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Collection<ProjectEntity> getCreatedProjects(String username) {
+        return (Collection<ProjectEntity>) getSession()
+                .createQuery("from ProjectEntity p where p.userByCreateBy.username = :username")
                 .setParameter("username", username)
                 .getResultList();
     }

@@ -15,7 +15,6 @@ import java.util.List;
  * 用户相关动作
  */
 @Controller
-@Deprecated
 public class UserList extends ActionVariableSupport {
     // 使用UserService进行事务请求
     private final UserService userService;
@@ -31,7 +30,7 @@ public class UserList extends ActionVariableSupport {
     // 列举用户
     public String execute() throws Exception {
         userEntityList = userService.getAllUserEntities();
-        httpServletRequest.setAttribute("tt", userEntityList);
+        httpServletRequest.setAttribute("users", userEntityList);
         return SUCCESS;
     }
 

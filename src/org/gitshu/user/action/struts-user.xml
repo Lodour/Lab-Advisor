@@ -36,8 +36,14 @@
         </action>
 
         <action name="userEntitySet" class="org.gitshu.user.action.UserEntitySet">
-            <result name="success">profiles-edit.jsp</result>
+            <result name="success">/index.jsp</result>
+            <result name="error">login.jsp</result>
         </action>
-
+        <action name="userList" class="org.gitshu.user.action.UserList">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="userTypeUpdate" class="org.gitshu.user.action.UserTypeUpdate">
+            <result name="success">/index.jsp</result>
+        </action>
     </package>
 </struts>

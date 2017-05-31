@@ -1,8 +1,8 @@
 <%@ page import="org.gitshu.entity.UserEntity" %><%--
   Created by IntelliJ IDEA.
   User: Pealing
-  Date: 2017/5/28
-  Time: 15:17
+  Date: 2017/5/31
+  Time: 9:09
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,6 @@
     String username = (String) session.getAttribute("username");
     UserEntity user = (UserEntity) request.getAttribute("userEntity");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -38,12 +37,14 @@
 <body>
 <div id="Menu" class="list-group" style="position: absolute; left:10%;top: 15%;width: 20%;">
     <div class="panel panel-default">
-        <div class="panel-heading">Git SHU</div>
+        <div class="panel-heading">GitSHU</div>
         <div class="list-group" style="margin: 0 auto;">
-            <a href="${pageContext.request.contextPath}/user/profiles-edit.jsp" class="list-group-item">个人信息</a>
-            <a href="${pageContext.request.contextPath}/user/password-reset.jsp" class="list-group-item">修改密码</a>
-            <a href="${pageContext.request.contextPath}/user/profiles.jsp?username=<%=user.getUsername()%>"
-               class="list-group-item">项目列表</a>
+            <a href="${pageContext.request.contextPath}/project/create.jsp" class="list-group-item">增加项目</a>
+            <a href="${pageContext.request.contextPath}/project/setting.jsp" class="list-group-item">项目设置</a>
+            <a href="${pageContext.request.contextPath}/project/member.jsp" class="list-group-item">成员设置</a>
+            <% if (user.getUserType() == 0) { %>
+            <a href="${pageContext.request.contextPath}/project/user.jsp" class="list-group-item">系统用户管理</a>
+            <% } %>
         </div>
     </div>
 </div>

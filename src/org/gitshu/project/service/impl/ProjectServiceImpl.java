@@ -3,11 +3,13 @@ package org.gitshu.project.service.impl;
 import org.gitshu.entity.ProjectEntity;
 import org.gitshu.entity.UserEntity;
 import org.gitshu.project.dao.ProjectDAO;
+import org.gitshu.project.dao.ProjectMemberDAO;
 import org.gitshu.project.service.ProjectService;
 import org.gitshu.user.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,11 +20,13 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectDAO projectDAO;
     private final UserDAO userDAO;
+    private final ProjectMemberDAO projectMemberDAO;
 
     @Autowired
-    public ProjectServiceImpl(ProjectDAO projectDAO, UserDAO userDAO) {
+    public ProjectServiceImpl(ProjectDAO projectDAO, UserDAO userDAO, ProjectMemberDAO projectMemberDAO) {
         this.projectDAO = projectDAO;
         this.userDAO = userDAO;
+        this.projectMemberDAO = projectMemberDAO;
     }
 
     /**
@@ -62,6 +66,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<ProjectEntity> getAllProjectEntities() {
         return projectDAO.getAllProjectEntities();
+    }
+
+    @Override
+    public Collection<ProjectEntity> getCreatedProjects(String username) {
+        return projectDAO.getCreatedProjects(username);
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class WorkflowStatusUpdate extends ActionVariableSupport {
     private final WorkflowService workflowService;
+    private int projectId;
 
     @Autowired
     public WorkflowStatusUpdate(WorkflowService workflowService) {
@@ -20,6 +21,7 @@ public class WorkflowStatusUpdate extends ActionVariableSupport {
 
     public String execute() {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        projectId = workflowService.getById(id).getProjectByProject().getId();
         int status = Integer.parseInt(httpServletRequest.getParameter("status"));
         switch (status) {
             case 0:
@@ -33,5 +35,13 @@ public class WorkflowStatusUpdate extends ActionVariableSupport {
                 break;
         }
         return SUCCESS;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 }

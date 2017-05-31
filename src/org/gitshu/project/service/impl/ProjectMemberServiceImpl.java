@@ -49,7 +49,9 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
      */
     @Override
     public void addMembers(int projectId, String[] group) {
-        throw new UnsupportedOperationException();
+        for (String user : group) {
+            addMember(projectId, user);
+        }
     }
 
     /**
@@ -60,7 +62,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
      */
     @Override
     public void removeMember(int projectId, String username) {
-        throw new UnsupportedOperationException();
+        projectMemberDAO.remove(projectId, username);
     }
 
     /**
@@ -71,7 +73,9 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
      */
     @Override
     public void removeMembers(int projectId, String[] group) {
-        throw new UnsupportedOperationException();
+        for (String user : group) {
+            removeMember(projectId, user);
+        }
     }
 
     /**
@@ -82,7 +86,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
      */
     @Override
     public List<UserEntity> getMembers(int projectId) {
-        throw new UnsupportedOperationException();
+        return projectMemberDAO.getMembers(projectId);
     }
 
     /**

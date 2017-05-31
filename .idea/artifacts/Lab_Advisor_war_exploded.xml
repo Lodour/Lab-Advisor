@@ -6,6 +6,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Lab-Advisor" />
+          <element id="library" level="application" name="highlight" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Hibernate 5.2.9-5.2.9" />
@@ -17,6 +18,7 @@
           <element id="library" level="project" name="org.eclipse.jgit:org.eclipse.jgit:3.6.0.201411121045-m1" />
           <element id="library" level="project" name="org.eclipse.jgit:org.eclipse.jgit.pgm:3.6.0.201411121045-m1" />
           <element id="library" level="project" name="org.eclipse.jgit:org.eclipse.jgit.http.server:3.6.0.201411121045-m1" />
+          <element id="library" level="project" name="org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.1" />
         </element>
       </element>
     </root>

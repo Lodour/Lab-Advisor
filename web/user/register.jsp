@@ -83,12 +83,13 @@
         <div class="form-group">
             <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
             <label>Phone:</label>
-            <input type="text" class="form-control" id="signup_phonr" placeholder="telphone">
+            <input name="mobile" type="text" class="form-control" id="signup_phonr" placeholder="telphone">
         </div>
         <div class="form-group">
             <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
             <label>E-mail:</label>
-            <input type="email" class="form-control validate[required]" id="exampleInputEmail1" placeholder="E-mail">
+            <input name="email" type="email" class="form-control validate[required]" id="exampleInputEmail1"
+                   placeholder="E-mail">
         </div>
         <div class="form-group">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>

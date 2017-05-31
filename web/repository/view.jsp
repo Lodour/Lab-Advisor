@@ -1,67 +1,109 @@
 <%@ page import="org.apache.commons.io.FileUtils" %>
 <%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
+<%--<%@ page import="org.markdown4j.Markdown4jProcessor" %>--%>
 <%@ page import="java.io.File" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="jap" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
-  User: Lodour
-  Date: 17/5/30
-  Time: 10:28
+  User: Pealing
+  Date: 2017/5/30
+  Time: 14:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
-    <script src="${pageContext.request.contextPath}/static/js/jquery-1.10.2.min.js"></script>
-
-    <!-- Bootstrap -->
-    <link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/npm.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>GitSHU Banner</title>
+    <title>GitSHU 代码仓库</title>
 </head>
-
+<body>
+<jap:include value="/components/banner.jsp"/>
 <s:action namespace="/repository" name="view"/>
-<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/default.min.css" rel="stylesheet">
-<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<jsp:useBean id="project" scope="request" type="org.gitshu.entity.ProjectEntity"/>
+<link href="${pageContext.request.contextPath}/static/css/default.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/static/js/highlight.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
-
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">${username}</h3>
-    </div>
-    <div class="panel-body">
-        Panel content
-    </div>
-</div>
-
 <%
     String pid = request.getParameter("pid");
     String pth = request.getParameter("pth");
     File[] files = (File[]) request.getAttribute("files");
     if (files == null) {
-        out.println("Invalid path.");
+        out.println("<script>alert('Invalid path.');window.location.href='/index.jsp';</script>");
         return;
     }
-    if (files.length == 2 && files[0] == null) {
-        // echo file
-        File file = files[1];
-        String content = FileUtils.readFileToString(file);
-        out.println("<pre>Filename: " + StringEscapeUtils.escapeHtml4(file.getName()) + "</pre>");
-        out.println("<pre><code>" + StringEscapeUtils.escapeHtml4(content) + "</code></pre>");
-    } else {
-        // echo dir
-        for (File file : files) {
-            String target = "/repository/view.jsp?pid=" + pid + "&pth=" + pth + file.getName();
-            out.println("<a href='" + target + "'>" + file.getName() + "</a><br>");
-        }
-    }
 %>
+<div class="panel panel-default" style="position: fixed;width: 100%;height: 100%;margin-top: 4.5%;">
+    <div class="panel-heading" style="padding-bottom: 0;">
+        <div style="margin-bottom: 0;margin-left: 15%;">
+            <div style="display: inline;">
+                <span class="glyphicon glyphicon-user"></span>
+                <label id="createUser">${project.userByCreateBy.realName}</label>
+                <label>/</label>
+            </div>
+            <div style="display: inline;">
+                <span class="glyphicon glyphicon-file"></span>
+                <label id="profileName">${project.title}</label>
+            </div>
+
+            <ul class="nav nav-tabs" style="margin-bottom: 0;margin-top: 2%;">
+                <li role="presentation" class="active"><a href=" ">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    Code</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel panel-info" style="margin-left: 15%;width: 70%;">
+            <div class="panel panel-heading">
+                <div>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    <lable id="roadName"><%=pth%>
+                    </lable>
+                </div>
+            </div>
+            <%
+                if (files.length == 2 && files[0] == null) {
+                    File file = files[1];
+                    String content = StringEscapeUtils.escapeHtml4(FileUtils.readFileToString(file));
+            %>
+            <div class="panel panel-body">
+                <pre><code><%=content%></code></pre>
+            </div>
+            <%
+            } else {
+            %>
+            <table class="table table-striped  table-hover">
+                <tr>
+                    <th><strong>文件名</strong></th>
+                    <th><strong>文件大小</strong></th>
+                    <th><strong>修改时间</strong></th>
+                        <%
+                    for (File file : files) {
+                        String target = "/repository/view.jsp?pid=" + pid + "&pth=" + pth + file.getName();
+                %>
+                <tr>
+                    <td>
+                        <a href="<%=target%>"><%=file.getName()%>
+                        </a>
+                    </td>
+                    <td>
+                        <%=file.length()%>
+                    </td>
+                    <td>
+                        <%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(file.lastModified()))%>
+                    </td>
+                </tr>
+                <% } %>
+            </table>
+            <%
+                }
+            %>
+        </div>
+    </div>
+</div>
+</body>
+</html>

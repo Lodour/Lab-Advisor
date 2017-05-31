@@ -22,8 +22,14 @@ public class UserEntitySet extends ActionVariableSupport {
 
     public String execute() {
         String username = (String) httpSession.get("username");
-        UserEntity userEntity = userService.getByUsername(username);
-        httpServletRequest.setAttribute("userEntity", userEntity);
+        if (username == null)
+            return ERROR;
+        try {
+            UserEntity userEntity = userService.getByUsername(username);
+            httpServletRequest.setAttribute("userEntity", userEntity);
+        } catch (Exception e) {
+            return ERROR;
+        }
         return SUCCESS;
     }
 }

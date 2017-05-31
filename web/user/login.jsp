@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="jap" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +28,7 @@
     <title>用户登录</title>
 </head>
 <body>
-<jap:include value="../components/banner.jsp"/>
+<s:include value="/components/banner.jsp"/>
 <div id="background" style="position:absolute; width: 100%;height: 100%;background-color: #E4E4E4; left: 0;top:0;">
     <nav>
         <div id="logo" style="position: absolute;left: 47.5%;top: 12%;width: 5%;height: 10%;border-radius: 5px;">

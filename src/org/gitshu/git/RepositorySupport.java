@@ -41,7 +41,7 @@ public class RepositorySupport {
     }
 
     public static Repository openRepository(int projectId) {
-        String repoDir = getProjDir(projectId);
+        String repoDir = getProjDir(projectId) + "/.git";
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
         try {
             Repository repository = builder

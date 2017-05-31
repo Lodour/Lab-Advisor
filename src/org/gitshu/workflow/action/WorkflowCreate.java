@@ -23,8 +23,8 @@ public class WorkflowCreate extends ActionVariableSupport {
 
     public String execute() throws IOException {
         projectId = Integer.parseInt(httpServletRequest.getParameter("id"));
-        String nodeNames = httpServletRequest.getParameter("name");
-        String nodeInfo = httpServletRequest.getParameter("info");
+        String nodeNames = httpServletRequest.getParameter("nodeNames");
+        String nodeInfo = httpServletRequest.getParameter("nodeInfo");
         int newNodeId = workflowService.create(projectId, nodeNames, nodeInfo);
         httpServletRequest.setAttribute("newNodeId", newNodeId);
         return SUCCESS;

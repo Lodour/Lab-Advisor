@@ -9,5 +9,30 @@
         <action name="projectListJoined" class="org.gitshu.project.action.ProjectListJoined">
             <result name="success">/user/profiles.jsp</result>
         </action>
+        <action name="projectCreate" class="org.gitshu.project.action.ProjectCreate">
+            <result name="success">/user/profiles.jsp</result>
+            <result name="error"/>
+        </action>
+        <action name="projectListAll" class="org.gitshu.project.action.ProjectListAll">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="projectListCreated" class="org.gitshu.project.action.ProjectListCreated">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="detail" class="org.gitshu.project.action.ProjectDetail">
+            <result name="success">setting.jsp</result>
+        </action>
+        <action name="memberUpdate" class="org.gitshu.project.action.ProjectMemberUpdate">
+            <result name="success">member.jsp</result>
+        </action>
+        <action name="memberDel" class="org.gitshu.project.action.ProjectMemberDelete">
+            <result name="success">setting.jsp</result>
+        </action>
+        <action name="projectUpdate" class="org.gitshu.project.action.ProjectUpdate">
+            <result name="success">setting.jsp</result>
+        </action>
+        <action name="projectMembers" class="org.gitshu.project.action.ProjectMembers">
+            <result name="success">setting.jsp</result>
+        </action>
     </package>
 </struts>

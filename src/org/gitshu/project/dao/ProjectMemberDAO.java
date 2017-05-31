@@ -3,6 +3,8 @@ package org.gitshu.project.dao;
 import org.gitshu.entity.ProjectEntity;
 import org.gitshu.entity.UserEntity;
 
+import java.util.List;
+
 /**
  * Created by Lodour on 17/5/29 22:05.
  * 项目-用户DAO
@@ -16,5 +18,9 @@ public interface ProjectMemberDAO {
      * @param userEntity    用户实体
      */
     void add(ProjectEntity projectEntity, UserEntity userEntity);
+
+    List<UserEntity> getMembers(int id);
+
+    void remove(int projectId, String username);
 
 }

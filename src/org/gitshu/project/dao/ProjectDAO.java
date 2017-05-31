@@ -2,6 +2,7 @@ package org.gitshu.project.dao;
 
 import org.gitshu.entity.ProjectEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -36,4 +37,6 @@ public interface ProjectDAO {
     List<ProjectEntity> getAllProjectEntities();
 
     List<ProjectEntity> getJoinedProjects(String username);
+
+    Collection<ProjectEntity> getCreatedProjects(String username);
 }

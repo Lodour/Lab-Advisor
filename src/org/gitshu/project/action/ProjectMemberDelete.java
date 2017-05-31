@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
  * 从某个项目删除成员
  */
 @Controller
+@Deprecated
 public class ProjectMemberDelete extends ActionVariableSupport {
     private final ProjectMemberService projectMemberService;
 

@@ -149,5 +149,4 @@ public class MailServiceImpl implements MailService {
     public MailEntity getById(int id) {
         return mailDAO.getById(id);
     }
-
 }

@@ -14,24 +14,25 @@ import java.util.List;
  * 我参与的项目列表
  */
 @Controller
-public class ProjectListJoined extends ActionVariableSupport {
+public class ProjectListCreated extends ActionVariableSupport {
     private final ProjectMemberService projectMemberService;
     private final ProjectService projectService;
 
     @Autowired
-    public ProjectListJoined(ProjectMemberService projectMemberService, ProjectService projectService) {
+    public ProjectListCreated(ProjectMemberService projectMemberService, ProjectService projectService) {
         this.projectMemberService = projectMemberService;
         this.projectService = projectService;
     }
 
 
     public String execute() {
-        String username = httpServletRequest.getParameter("username");
-        if (username == null || "".equals(username)) {
-            username = (String) httpSession.get("username");
+        String username = (String) httpSession.get("username");
+        List<ProjectEntity> result = projectMemberService.getJoinedProjects(username);
+        for (ProjectEntity projectEntity : projectService.getCreatedProjects(username)) {
+            if (!result.contains(projectEntity))
+                result.add(projectEntity);
         }
-        List<ProjectEntity> projectEntities = (List<ProjectEntity>) projectService.getCreatedProjects(username);
-        httpServletRequest.setAttribute("projects", projectEntities);
+        httpServletRequest.setAttribute("projects", result);
         return SUCCESS;
     }
 }

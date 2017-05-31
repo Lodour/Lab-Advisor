@@ -1,5 +1,7 @@
 package org.gitshu.repository.action;
 
+import org.gitshu.entity.ProjectEntity;
+import org.gitshu.project.service.ProjectService;
 import org.gitshu.repository.service.RepoService;
 import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,11 @@ import java.io.File;
 @Controller
 public class View extends ActionVariableSupport {
     private final RepoService repoService;
-
+    private final ProjectService projectService;
     @Autowired
-    public View(RepoService repoService) {
+    public View(RepoService repoService, ProjectService projectService) {
         this.repoService = repoService;
+        this.projectService = projectService;
     }
 
     public String execute() {
@@ -25,6 +28,9 @@ public class View extends ActionVariableSupport {
         String path = httpServletRequest.getParameter("pth");
         File[] files = repoService.getFiles(projectId, path);
         httpServletRequest.setAttribute("files", files);
+
+        ProjectEntity projectEntity = projectService.getById(projectId);
+        httpServletRequest.setAttribute("project", projectEntity);
         return SUCCESS;
     }
 }

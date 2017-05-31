@@ -1,5 +1,6 @@
 package org.gitshu.project.action;
 
+import org.gitshu.entity.ProjectEntity;
 import org.gitshu.project.service.ProjectService;
 import org.gitshu.utils.action.ActionVariableSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,13 @@ public class ProjectUpdate extends ActionVariableSupport {
     }
 
     public String execute() {
-        throw new UnsupportedOperationException();
+        int projectId = Integer.valueOf(httpServletRequest.getParameter("id"));
+        ProjectEntity projectEntity = projectService.getById(projectId);
+        String title = httpServletRequest.getParameter("title");
+        String info = httpServletRequest.getParameter("info");
+        if (!"".equals(title)) projectEntity.setTitle(title);
+        if (!"".equals(info)) projectEntity.setInfo(info);
+        projectService.update(projectEntity);
+        return SUCCESS;
     }
 }

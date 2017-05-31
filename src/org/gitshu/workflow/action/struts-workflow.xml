@@ -16,10 +16,16 @@
             </result>
         </action>
         <action name="WorkflowDelete" class="org.gitshu.workflow.action.WorkflowDelete">
-            <result name="success">workflowView.jsp</result>
+            <result name="success" type="redirect">
+                <param name="location">workflowView.jsp</param>
+                <param name="projectId">${projectId}</param>
+            </result>
         </action>
         <action name="WorkflowStatusUpdate" class="org.gitshu.workflow.action.WorkflowStatusUpdate">
-            <result name="success">workflowView.jsp</result>
+            <result name="success" type="redirect">
+                <param name="location">workflowView.jsp</param>
+                <param name="projectId">${projectId}</param>
+            </result>
         </action>
     </package>
 </struts>

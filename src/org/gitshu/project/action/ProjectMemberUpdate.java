@@ -10,18 +10,23 @@ import org.springframework.stereotype.Controller;
  * 向某个项目添加成员
  */
 @Controller
-public class ProjectMemberAdd extends ActionVariableSupport {
+public class ProjectMemberUpdate extends ActionVariableSupport {
     private final ProjectMemberService projectMemberService;
 
     @Autowired
-    public ProjectMemberAdd(ProjectMemberService projectMemberService) {
+    public ProjectMemberUpdate(ProjectMemberService projectMemberService) {
         this.projectMemberService = projectMemberService;
     }
 
     public String execute() {
         int projectId = Integer.valueOf(httpServletRequest.getParameter("id"));
-        String username = httpServletRequest.getParameter("username");
-        projectMemberService.addMember(projectId, username);
+        String op = httpServletRequest.getParameter("op");
+        String usernames = httpServletRequest.getParameter("username");
+        System.out.println(projectId + usernames);
+        if ("add".equals(op))
+            projectMemberService.addMembers(projectId, usernames.split(","));
+        if ("del".equals(op))
+            projectMemberService.removeMembers(projectId, usernames.split(","));
         return SUCCESS;
     }
 }
